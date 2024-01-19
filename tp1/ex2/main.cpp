@@ -11,6 +11,7 @@ int main(int argc, char const *argv[])
     cin >> nbPersonnes;
     string name;
     string surname;
+    string coma;
     for(auto i =0; i  < nbPersonnes; i++)
     {
         cout << "Prenom: ";
@@ -19,10 +20,11 @@ int main(int argc, char const *argv[])
         cin >> surname;
         persons.emplace_back(Person(name,surname));
     }
-    cout << "Les personnes sont";
+    cout << "Les personnes sont ";
     for(auto p : persons)
     {
-        cout <<" "<< p.get_name()<<" " << p.get_surname();
+        cout << coma<< p.get_name()<<" " << p.get_surname();
+        coma =", ";
     }
     cout <<"." << endl;
     return 0;
