@@ -3,6 +3,6 @@
 int main(int argc, char const *argv[])
 {
     auto p = Person("Paluche","LaFaluche");
-    std::cout << "La personne s'appelle "<<p.first_name <<" "<<p.surname << std::endl;
+    std::cout << "La personne s'appelle "<<p.get_name() <<" "<<p.get_surname() << std::endl;
     return 0;
 }
