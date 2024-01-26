@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Card.hpp"
 
-Card::Card(CardValue value,CardColor color):
+Card::Card(unsigned int value,std::string color):
         _value {value},
         _color {color}
         {}
@@ -11,7 +11,7 @@ void Card::print() const
     switch (_value)
     {
     case 14:
-        std::cout << "AS de " << _color << std::endl;
+        std::cout << "As de " << _color << std::endl;
         break;
     case 11:
         std::cout << "Valet de " << _color << std::endl;
@@ -23,7 +23,7 @@ void Card::print() const
         std::cout << "Roi de " << _color << std::endl;
         break;
     default:
-        std::cout << std::to_string(_value) << " de " << _color << std::endl;
+        std::cout << _value << " de " << _color << std::endl;
     }
 }
    
@@ -46,35 +46,24 @@ bool Card::operator<(const Card& other) const
     return false;
 }
 
-CardValue Card::value() const
+std::ostream& operator<<(std::ostream& stream, Card card)
 {
-    return _value;
-}
-
-CardColor Card::color() const
-{
-    return _color;
-}
-
-std::ostream& operator<<(std::ostream& stream,  Card card)
-{
-    switch (card.value())
+    switch (card._value)
     {
     case 14:
-        std::cout << "AS de " << card.color() << std::endl;
+        stream << "As de " << card._color << std::endl;
         break;
     case 11:
-        std::cout << "Valet de " << card.color() << std::endl;
+        stream << "Valet de " << card._color << std::endl;
         break;
     case 12:
-        std::cout <<  "Dame de " << card.color() << std::endl;
+        stream <<  "Dame de " << card._color << std::endl;
         break;
     case 13:
-        std::cout << "Roi de " << card.color() << std::endl;
+        stream << "Roi de " << card._color << std::endl;
         break;
     default:
-        std::cout << std::to_string(card.value()) << " de " << card.color() << std::endl;
+        stream << card._value << " de " << card._color << std::endl;
     }
-
     return stream;
 }
