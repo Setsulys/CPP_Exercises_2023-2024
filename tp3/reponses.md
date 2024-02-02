@@ -114,6 +114,7 @@ int main()
 ![](images/1_c.png)
 
 > 2. Quel problème relève-t-on dans le graphe ?
+
 On laisse une dangling référence.
 
 > 3. Modifiez le code ci-dessus afin que `products` contienne des pointeurs ownants. Pensez à ajouter un destructeur à `Client` pour libérer la mémoire allouée dynamiquement.
@@ -152,5 +153,60 @@ int main()
 
 > 4. Redessinez le graphe d'ownership de la question 1, mais en prenant en compte vos changements dans le code.
 
+![](images/1_c2.png)
 
 > 5. Avez-vous toujours le problème relevé à la question 2 ?
+
+non car on utilise plus une référence mais un pointeur observant
+
+
+## Exercice 2 - La meilleure signature (15min)
+
+1. Remplacez les `XX` par les bons types, de manière à ce que le programme compile et affiche `10 42`.
+
+```cpp
+#include <iostream>
+
+int add(int a, int b)
+{
+    return a + b;
+}
+
+int add_to(int& a, int b)
+{
+    a += b;
+}
+
+int main()
+{
+    int x = 10;
+    int y = add(x, x);
+    add_to(y, 22);
+    std::cout << x << " " << y << std::endl;
+    return 0;
+}
+```
+2. Modifiez si besoin les types des paramètres dans les fonctions ci-dessous pour que le passage soit le plus efficace et le plus sécurisé possible.  
+Vous pouvez vous aider des commentaires pour comprendre comment les fonctions utilisent leurs paramètres.
+```cpp
+// Return the number of occurrences of 'a' found in string 's'.
+int count_a_occurrences(std::string s);
+
+// Update function of a rendering program.
+// - dt (delta time) is read by the function to know the time elapsed since the last frame.
+// - errors is a string filled by the function to indicate what errors have occured.
+void update_loop(const float& dt, std::string& errors_out);
+
+// Return whether all numbers in 'values' are positive.
+// If there are negative values in it, fill the array 'negative_indices_out' with the indices
+// of these values and set its size in 'negative_count_out'.
+// ex: auto res = are_all_positive({ 1, -2, 3, -4 }, negative_indices, negative_count);
+//    -> res is false, since not all values are positive
+//    -> negative_indices contains { 1, 3 } because values[1] = -2 and values[3] = -4
+//    -> negative_count is 2
+bool are_all_positives(std::vector<int> values, int negative_indices_out[], size_t& negative_count_out);
+
+// Concatenate 'str1' and 'str2' and return the result.
+// The input parameters are not modified by the function.
+std::string concatenate(char& str1, char& str2);
+```
