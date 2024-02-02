@@ -172,7 +172,7 @@ int add(int a, int b)
     return a + b;
 }
 
-int add_to(int& a, int b)
+void add_to(int& a, int b)
 {
     a += b;
 }
@@ -190,7 +190,7 @@ int main()
 Vous pouvez vous aider des commentaires pour comprendre comment les fonctions utilisent leurs paramètres.
 ```cpp
 // Return the number of occurrences of 'a' found in string 's'.
-int count_a_occurrences(std::string s);
+int count_a_occurrences(const std::string& s);
 
 // Update function of a rendering program.
 // - dt (delta time) is read by the function to know the time elapsed since the last frame.
@@ -204,9 +204,86 @@ void update_loop(const float& dt, std::string& errors_out);
 //    -> res is false, since not all values are positive
 //    -> negative_indices contains { 1, 3 } because values[1] = -2 and values[3] = -4
 //    -> negative_count is 2
-bool are_all_positives(std::vector<int> values, int negative_indices_out[], size_t& negative_count_out);
+bool are_all_positives(const std::vector<int>& values, std::vector<int>& negative_indices_out, size_t& negative_count_out);
 
 // Concatenate 'str1' and 'str2' and return the result.
 // The input parameters are not modified by the function.
-std::string concatenate(char& str1, char& str2);
+std::string concatenate(const std::string& str1, const std::string& str2);
 ```
+## Exercice 3 - Gestion des resources (55min)
+
+Vous allez créer un logiciel permettant de gérer les salariés de votre entreprise.
+
+Dans votre logiciel, vous devez connaître pour chaque salarié :
+- son nom et prénom,
+- son salaire mensuel,
+- les autres salariés dont il est manager.
+
+Chaque salarié travaille pour un seul et unique département (la R&D, le marketing, etc).
+
+En tant que chef d'entreprise, vous voulez utiliser ce logiciel pour réaliser les actions suivantes :
+1. lister tous les salariés,
+2. lister tous les départements,
+3. lister les personnes appartenant à un département précis,
+4. lister tous les managers,
+5. lister les subordonnés d'un manager,
+6. embaucher un nouveau salarié,
+7. licencier un salarié,
+8. changer un salarié de département,
+9. augmenter le salaire d'une personne,
+10. afficher la somme totale payée pour les salaires par département.
+
+### 1. Architecture (15min)
+
+Dans votre programme, vous aurez les classes suivantes :
+- `HRSoftSystem` : représente le système et toutes les données sur lesquelles il opère
+- `Employee` : représente un employé
+- `Department` : représente un département
+
+On vous propose trois architectures différentes pour le programme :
+
+**Architecture A**
+![](images/ex3-a.svg)
+
+**Architecture B**
+![](images/ex3-b.svg)
+
+**Architecture C**
+![](images/ex3-c.svg)
+
+Pour chacune d'entre elles, vous indiquerez les opérations que le programme devrait effectuer pour satisfaire chacun des besoins cités plus haut, sans jamais introduire de dangling-reference.
+
+**Architecture A**
+1. check dans la collection d'employé
+2. check la collection des département
+3. dans la collection d'un département check les références vers les employés
+4. pour chaque employé, verifier si on a une référence qui pointe sur un autre employé
+5. 
+6. ajouter un employé a la collection d'employé
+7. mettre le pointeur observant du déparetment vers l'employé a null, pareil pour ses manager et licencier l'employé
+8. créer une référence du nouveau déparetment vers l'employé et supprimer l'ancien
+9. selectionner l'employé et augmenter son salaire
+10. pour chaque employé d'un département sommer le salaire faire ca pour chaque département
+
+**Architecture B**
+1. pour chaque département verifier la collection d'employé
+2. check la collection de département 
+3. dans un département check la collection d'employé
+4. pour chaque département verifier pour chaque employé si elles ont des pointeurs observant vers d'autres employés
+5. pour chaque département verifier pour chaque employé si elles ont des pointeurs observant vers d'autres employés et quels employés
+6.  
+7.
+8.
+9.
+10.
+**Architecture C**
+1. 
+2. 
+3. 
+4. 
+5. 
+6. 
+7.
+8.
+9.
+10.
