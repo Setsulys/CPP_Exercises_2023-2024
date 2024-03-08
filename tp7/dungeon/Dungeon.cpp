@@ -1,5 +1,8 @@
 #include "Entity.hpp"
 #include "Logger.hpp"
+#include "Character.hpp"
+#include "Trap.hpp"
+#include "Potion.hpp"
 
 #include <array>
 #include <chrono>
@@ -96,8 +99,8 @@ void trigger_interactions(const std::vector<Entity*>& entities)
 {
     if (entities.size() > 1)
     {
-        // entities[0]->interact_with(*entities[1]);
-        // entities[1]->interact_with(*entities[0]);
+        entities[0]->interact_with(*entities[1]);
+        entities[1]->interact_with(*entities[0]);
     }
 }
 
@@ -168,11 +171,12 @@ int main()
     const auto height = grid.size();
 
     auto all_entities = std::vector<std::unique_ptr<Entity>> {};
-    all_entities.push_back(std::make_unique<Entity>(3, 2));
-    all_entities.push_back(std::make_unique<Entity>(7, 6));
-    // all_entities.push_back(std::make_unique<Character>());
-    // all_entities.push_back(std::make_unique<Trap>(width, height));
-    // all_entities.push_back(std::make_unique<Trap>(width, height));
+    all_entities.push_back(std::make_unique<Character>(3, 2));
+    all_entities.push_back(std::make_unique<Character>(7, 6));
+    all_entities.push_back(std::make_unique<Character>(40,5));
+    all_entities.push_back(std::make_unique<Trap>(width, height));
+    all_entities.push_back(std::make_unique<Trap>(width, height));
+    all_entities.push_back(std::make_unique<Potion>(width, height));
 
     fill_grid(grid, all_entities);
 

@@ -15,9 +15,12 @@ public:
     int get_x() const { return _x; }
     int get_y() const { return _y; }
 
-    char get_representation() const { return '?'; }
+    virtual char get_representation() const =0;
 
-    void update() { random_move(_x, _y); }
+    virtual void update() { random_move(_x, _y); }
+
+    virtual void interact_with(Entity& entity)
+    {}
 
 private:
     int _x = 0;
