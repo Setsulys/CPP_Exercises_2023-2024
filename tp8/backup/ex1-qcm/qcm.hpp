@@ -90,7 +90,7 @@ private:
 #endif
 // Est-ce que l'utilisation de la classe ci-dessus est susceptible de créer des problèmes de mémoire (fuite,
 // double-déallocation, etc.) ?
-#define ANSWER_3 true
+#define ANSWER_3 false
 
 // 4. // ====================================================================================================
 #ifdef CODE_IGNORE_PAR_LE_COMPILATEUR
@@ -116,7 +116,7 @@ private:
 #endif
 // Est-ce que l'utilisation de la classe ci-dessus est susceptible de créer des problèmes de mémoire (fuite,
 // double-déallocation, etc.) ?
-#define ANSWER_4 false
+#define ANSWER_4 true
 
 // 5. // ====================================================================================================
 #ifdef CODE_IGNORE_PAR_LE_COMPILATEUR
@@ -171,7 +171,7 @@ int main()
 // 11. L'expression 1 est-elle une r-value?
 #define ANSWER_11 true
 // 12. L'expression x+1 est-elle une r-value?
-#define ANSWER_12 true
+#define ANSWER_12 false
 // 13. L'expression y est-elle une r-value?
 #define ANSWER_13 false
 // 14. L'expression g(x + 1, y) est-elle une r-value?
