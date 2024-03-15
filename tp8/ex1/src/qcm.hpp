@@ -177,9 +177,9 @@ int main()
 // 14. L'expression g(x + 1, y) est-elle une r-value?
 #define ANSWER_14 true
 // 15. L'expression f(g(x + 1, y), z) est-elle une r-value?
-#define ANSWER_15 true
+#define ANSWER_15 false
 // 16. L'expression f(w, f(g(x + 1, y), z)) est-elle une r-value?
-#define ANSWER_16 true
+#define ANSWER_16 false
 
 // 2X. // ===================================================================================================
 // On conside un programme avec deux classes, Fille et Mère, où Fille hérite de Mère.
